@@ -8,10 +8,12 @@ resource "aws_instance" "nginx" {
 
   user_data = <<-EOF
               #!/bin/bash
-              sudo amazon-linux-extras install nginx1 -y
+              sudo apt update && sudo apt upgrade -y
+              sudo apt install nginx
               sudo systemctl start nginx
+              sudo systemctl restart nginx
               
-              echo "Hello from $(hostname)" > /usr/share/nginx/html/index.html
+              echo "<h1>Hello from $(hostname)</h1>" | sudo tee /var/www/html/index.html
               EOF
 
   tags = {
