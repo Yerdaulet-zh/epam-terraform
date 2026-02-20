@@ -4,11 +4,11 @@ resource "aws_elb" "nginx_lb" {
   security_groups = [data.terraform_remote_state.network.outputs.lb_sg_id]
   availability_zones = ["eu-south-1a", "eu-south-1b"]
   
-  access_logs {
-    bucket        = "epam-logs" // This bucket has globally unique name :) 
-    bucket_prefix = "epam-terraform-logs"
-    interval      = 60
-  }
+  # access_logs {
+  #   bucket        = "epam-logs" // This bucket has globally unique name :) 
+  #   bucket_prefix = "epam-terraform-logs"
+  #   interval      = 60
+  # }
 
   listener {
     instance_port     = 80
