@@ -9,3 +9,8 @@ resource "aws_subnet" "public" {
     Name    = "Public Subent"
   }
 }
+
+output "public_subnet_id" {
+  value = aws_subnet.public.id
+  sensitive = true
+}
