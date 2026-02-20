@@ -1,10 +1,10 @@
 resource "aws_instance" "nginx" {
-  count                  = 2
-  ami                    = local.ami
-  instance_type          = "t2.micro"
-  
+  count         = 2
+  ami           = local.ami
+  instance_type = "t3.micro"
+
   subnet_id              = data.terraform_remote_state.network.outputs.public_subnet_id
-  vpc_security_group_ids = [aws_security_group.nginx_sg.id]
+  vpc_security_group_ids = [data.terraform_remote_state.network.outputs.nginx_sg_id]
 
   user_data = <<-EOF
               #!/bin/bash
