@@ -2,7 +2,7 @@ resource "aws_elb" "nginx_lb" {
   name            = "nginx-classic-lb"
   subnets         = [data.terraform_remote_state.network.outputs.public_subnet_id]
   security_groups = [data.terraform_remote_state.network.outputs.lb_sg_id]
-  availability_zones = ["eu-south-1a", "eu-south-1b"]
+  # availability_zones = ["eu-south-1a", "eu-south-1b"]
   
   # access_logs {
   #   bucket        = "epam-logs" // This bucket has globally unique name :) 
@@ -26,7 +26,7 @@ resource "aws_elb" "nginx_lb" {
   }
 
   instances = aws_instance.nginx[*].id
-  cross_zone_load_balancing   = true
+  cross_zone_load_balancing   = false
   idle_timeout                = 400
   connection_draining         = true
   connection_draining_timeout = 400
