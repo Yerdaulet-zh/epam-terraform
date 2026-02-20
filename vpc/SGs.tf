@@ -39,3 +39,13 @@ resource "aws_security_group" "nginx_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+output "nginx_sg_id" {
+  value = aws_security_group.nginx_sg.id
+  sensitive = true
+}
+
+output "lb_sg_id" {
+  value = aws_security_group.lb_sg.id
+  sensitive = true
+}
