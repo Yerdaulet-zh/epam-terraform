@@ -2,7 +2,7 @@
 resource "aws_security_group" "lb_sg" {
   name        = "classic-lb-sg"
   description = "Allow HTTP traffic from the internet"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = aws_vpc.vpc.id
 
   ingress {
     from_port   = 80
@@ -23,7 +23,7 @@ resource "aws_security_group" "lb_sg" {
 resource "aws_security_group" "nginx_sg" {
   name        = "nginx-instance-sg"
   description = "Allow traffic ONLY from the Load Balancer"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = aws_vpc.vpc.id
 
   ingress {
     from_port       = 80
